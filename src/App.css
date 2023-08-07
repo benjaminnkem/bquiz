@@ -3,14 +3,7 @@
 }
 
 .home-header {
-  height: 100vh;
-  position: relative;
   transform-style: preserve-3d;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: -1;
 }
 
 .home-header h1 {
@@ -19,38 +12,23 @@
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.652);
 }
 
-.header-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-  transform: translateZ(-10px) scale(2.1);
-  user-select: none;
-}
-
 .available {
   padding: 1rem 0 16rem 0;
 }
 
-.quiz-avail-con {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 1rem 0;
+.header-img {
+  transform: translateZ(-10px) scale(2);
 }
 
-.quiz-self {
+/* .quiz-self {
   background: var(--accent-3);
   font-weight: 600;
   padding: 1rem 2rem;
   border-radius: 8px;
-  transition: background-color .5s;
+  transition: background-color 0.5s;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.155);
 }
 
 .quiz-self:hover {
   background: var(--accent-2);
-}
+} */

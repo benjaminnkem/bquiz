@@ -7,9 +7,8 @@ const Navbar = () => {
         <div className="lock-con navbar">
           <nav>
             <ul>
-              <li>Quiz</li>
               <li>Home</li>
-              <li>Create Quiz</li>
+              <li>Report A Bug</li>
             </ul>
           </nav>
         </div>
