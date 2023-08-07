@@ -1,5 +1,5 @@
 :root {
-  --base-background-color: #aff9c9;
+  --base-background-color: #f7fffa;
   --base-foreground-color: #1a1a1a;
 
   --accent-1: #7cf0bd;
@@ -17,7 +17,20 @@ html {
   margin: 0;
 }
 
-@media (prefers-color-scheme: dark) {
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background: linear-gradient(to top, rgb(144, 216, 238), rgb(11, 221, 158));
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(222, 227, 224, 0.266);
+}
+
+/* @media (prefers-color-scheme: dark) {
   :root {
     --base-background-color: #131313;
     --base-foreground-color: #d7ebe3;
@@ -26,6 +39,20 @@ html {
     --accent-2: #67e0a3;
     --accent-3: #317b22;
   }
+} */
+
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--base-foreground-color);
 }
 
 body {
@@ -34,12 +61,44 @@ body {
   transition: background-color 0.5s, color 0.8s;
   background: var(--base-background-color);
   color: var(--base-foreground-color);
-  max-width: 1488px;
+  overflow: hidden;
+}
+
+main {
+  background: var(--base-background-color);
+  color: var(--base-foreground-color);
+}
+
+.lock-con {
+  max-width: 1024px;
   margin-inline: auto;
 }
 
-@media (max-width: 768px) {
-  body {
-    width: 91.67%;
-  }
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  width: 100%;
+  z-index: 10;
+  color: white;
+  top: 0;
+  left: 0;
+  margin: 0 auto;
+  border: 1px blue solid;
+}
+
+.navbar h1 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.7rem;
+}
+
+.navbar ul {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.navbar ul > li {
+  margin-inline: 1rem;
 }
