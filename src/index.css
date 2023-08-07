@@ -1,10 +1,15 @@
-:root {
-  --base-background-color: #f7fffa;
-  --base-foreground-color: #1a1a1a;
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;600;800&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  --accent-1: #7cf0bd;
-  --accent-2: #67e0a3;
-  --accent-3: #317b22;
+:root {
+  --base-background-color: #000000;
+  --base-foreground-color: #fff;
+
+  --accent-1: #150050;
+  --accent-2: #3F0071;
+  --accent-3: #610094;
 }
 
 html {
@@ -23,7 +28,7 @@ html {
 
 ::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background: linear-gradient(to top, rgb(144, 216, 238), rgb(11, 221, 158));
+  background: linear-gradient(to top, rgb(221, 144, 238), rgb(120, 11, 221));
 }
 
 ::-webkit-scrollbar-track {
@@ -56,7 +61,7 @@ a {
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+  font-family: 'Raleway', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
     "Helvetica Neue", sans-serif;
   transition: background-color 0.5s, color 0.8s;
   background: var(--base-background-color);
@@ -74,22 +79,28 @@ main {
   margin-inline: auto;
 }
 
+.wrapper {
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+  overflow-x: hidden;
+  perspective: 10px;
+}
+
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 10px 0;
+  padding: 1rem 0;
   width: 100%;
   z-index: 10;
-  color: white;
+  color: var(--base-foreground-color);
   top: 0;
   left: 0;
   margin: 0 auto;
-  border: 1px blue solid;
 }
 
 .navbar h1 {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1.7rem;
 }
 
@@ -97,8 +108,17 @@ main {
   display: flex;
   align-items: center;
   font-weight: 500;
+  gap: 2rem;
 }
 
 .navbar ul > li {
-  margin-inline: 1rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.wrap {
+  max-width: 1488px;
+  width: 90%;
+  margin-inline: auto;
 }

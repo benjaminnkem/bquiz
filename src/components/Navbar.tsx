@@ -1,18 +1,19 @@
+import DefaultWrapper from "./DefaultWrapper";
+
 const Navbar = () => {
   return (
     <>
-      <div className="lock-con navbar">
-        <h1>Bmovies</h1>
-
-        <nav>
-          <ul>
-            <li>Movies</li>
-            <li>Find</li>
-            <li>About</li>
-            <li>Contact</li>
-          </ul>
-        </nav>
-      </div>
+      <DefaultWrapper>
+        <div className="lock-con navbar">
+          <nav>
+            <ul>
+              <li>Quiz</li>
+              <li>Home</li>
+              <li>Create Quiz</li>
+            </ul>
+          </nav>
+        </div>
+      </DefaultWrapper>
       ;
     </>
   );
