@@ -10,52 +10,150 @@ Creating quiz context
 import { ReactNode, createContext } from "react";
 
 type GlobalQuizProvider = { children: ReactNode };
+type QuizBody = {
+  question_id: number;
+  question: string;
+  answer: string;
+}[];
+
 type QuizzesListType = {
   id: string;
   title: string;
   description: string;
-  quiz_body: {
-    question_id: number;
-    question: string;
-    answer: string;
-  }[];
+  quiz_body: QuizBody;
 }[];
 
 const quizzes: QuizzesListType = [
   {
     id: "science-whiz",
     title: "Science Whiz",
-    description: "",
+    description: `
+      Dive into the world of science and answer questions about biology, chemistry, physics, and more to prove your scientific prowess.
+    `,
     quiz_body: [
-      { question_id: 1, question: "Some random question 1", answer: "D" },
-      { question_id: 2, question: "Some random question 2", answer: "A" },
-      { question_id: 3, question: "Some random question 3", answer: "C" },
-      { question_id: 4, question: "Some random question 4", answer: "D" },
-      { question_id: 5, question: "Some random question 5", answer: "B" },
+      { question_id: 1, question: "What is the chemical symbol for gold?", answer: "B" },
+      { question_id: 2, question: "Which gas is essential for photosynthesis?", answer: "C" },
+      { question_id: 3, question: "What does DNA stand for?", answer: "A" },
+      { question_id: 4, question: "What is the smallest bone in the human body?", answer: "B" },
+      { question_id: 5, question: "Which planet is known as the Red Planet?", answer: "C" },
     ],
   },
   {
     id: "movie-buzz",
-    title: "Movie Buzz",
-    description: "",
+    title: "Movie Buff Challenge",
+    description: `
+      Guess the movie from quotes, posters, and scenes to prove that you're the ultimate movie buff.
+    `,
     quiz_body: [
-      { question_id: 1, question: "Some random question 1", answer: "D" },
-      { question_id: 2, question: "Some random question 2", answer: "A" },
-      { question_id: 3, question: "Some random question 3", answer: "C" },
-      { question_id: 4, question: "Some random question 4", answer: "D" },
-      { question_id: 5, question: "Some random question 5", answer: "B" },
+      { question_id: 1, question: "Which film features a character named Luke Skywalker?", answer: "C" },
+      {
+        question_id: 2,
+        question: "Which actor played the role of Tony Stark in the Marvel Cinematic Universe?",
+        answer: "C",
+      },
+      { question_id: 3, question: "In which year was the first Jurassic Park movie released?", answer: "A" },
+      { question_id: 4, question: "Which movie features a giant ape climbing the Empire State Building?", answer: "D" },
+      { question_id: 5, question: "Who directed the 1994 film 'Pulp Fiction'?", answer: "A" },
+    ],
+  },
+  {
+    id: "sports-fanatic",
+    title: "Sports Fanatic",
+    description: `
+      Prove your sports knowledge by answering questions about athletes, teams, championships, and iconic sports moments.
+    `,
+    quiz_body: [
+      { question_id: 1, question: "Which country won the FIFA World Cup in 2018?", answer: "B" },
+      { question_id: 2, question: "Who is known as 'The Greatest' in boxing?", answer: "D" },
+      { question_id: 3, question: "Which sport uses the term 'birdie'?", answer: "A" },
+      { question_id: 4, question: "Which team has won the most NBA championships?", answer: "C" },
+      { question_id: 5, question: "In golf, what is the term for a hole played three strokes under par?", answer: "B" },
+    ],
+  },
+  {
+    id: "nature-and-wildlife-quiz",
+    title: "Nature and Wildlife Quiz",
+    description: `
+      Explore the natural world by answering questions about animals, ecosystems, conservation, and environmental issues.
+    `,
+    quiz_body: [
+      { question_id: 1, question: "Which mammal can fly?", answer: "A" },
+      { question_id: 2, question: "What is the world's largest ocean?", answer: "B" },
+      { question_id: 3, question: "Which animal is a marsupial?", answer: "C" },
+      {
+        question_id: 4,
+        question: "What is the process of a caterpillar turning into a butterfly called?",
+        answer: "D",
+      },
+      {
+        question_id: 5,
+        question: "Which gas do plants absorb from the atmosphere during photosynthesis?",
+        answer: "C",
+      },
+    ],
+  },
+  {
+    id: "music-mania",
+    title: "Music Mania",
+    description: `
+      Put your musical knowledge to the test by identifying songs, artists, and genres across different decades and styles.
+    `,
+    quiz_body: [
+      { question_id: 1, question: "Who is known as the 'King of Pop'?", answer: "B" },
+      { question_id: 2, question: "Which band performed the song 'Bohemian Rhapsody'?", answer: "C" },
+      { question_id: 3, question: "What instrument is Yoyo Ma famous for playing?", answer: "A" },
+      {
+        question_id: 4,
+        question: "Which legendary guitarist is known for his iconic 'Stairway to Heaven' solo?",
+        answer: "D",
+      },
+      { question_id: 5, question: "What is the highest male voice in classical music?", answer: "C" },
     ],
   },
   {
     id: "tech-trivia-trek",
     title: "Tech Trivia Trek",
-    description: "",
+    description: `
+      Embark on a tech-savvy journey through the digital universe, answering questions about gadgets, programming languages, tech history, and innovations.
+    `,
     quiz_body: [
-      { question_id: 1, question: "Some random question 1", answer: "D" },
-      { question_id: 2, question: "Some random question 2", answer: "A" },
-      { question_id: 3, question: "Some random question 3", answer: "C" },
-      { question_id: 4, question: "Some random question 4", answer: "D" },
-      { question_id: 5, question: "Some random question 5", answer: "B" },
+      { question_id: 1, question: "Which company is known for its iPhones and MacBooks?", answer: "C" },
+      { question_id: 2, question: "What does 'HTML' stand for?", answer: "A" },
+      {
+        question_id: 3,
+        question: "Which scientist is credited with the invention of the World Wide Web?",
+        answer: "C",
+      },
+      { question_id: 4, question: "What is the process of converting code into an executable program?", answer: "A" },
+      { question_id: 5, question: "What is the unit of measurement for the speed of data transfer?", answer: "D" },
+    ],
+  },
+  {
+    id: "mythology-mayhem",
+    title: "Mythology Mayhem",
+    description: `
+      Venture into the realms of gods, heroes, and mythical creatures from various cultures as you answer questions about mythology and folklore.
+    `,
+    quiz_body: [
+      { question_id: 1, question: "Who is the Greek god of the sea?", answer: "D" },
+      { question_id: 2, question: "Which Norse god wields the mighty hammer Mjölnir?", answer: "A" },
+      { question_id: 3, question: "Who is the Egyptian goddess of magic and wisdom?", answer: "C" },
+      { question_id: 4, question: "In Hindu mythology, who is the destroyer of evil forces?", answer: "B" },
+      { question_id: 5, question: "What mythical creature is said to be half-man and half-horse?", answer: "A" },
+    ],
+  },
+  {
+    id: "health-and-wellness-wiz",
+    title: "Health and Wellness Wiz",
+    description: `
+      Test your knowledge of health, nutrition, fitness, and wellness topics, and discover valuable insights for a healthier lifestyle along the way.
+    `,
+    quiz_body: [
+      { question_id: 1, question: "Which nutrient is the primary source of energy for the body?", answer: "C" },
+      { question_id: 2, question: "What is the recommended daily water intake for adults?", answer: "B" },
+      { question_id: 3, question: "Which vitamin is known as the 'sunshine vitamin'?", answer: "D" },
+      { question_id: 4, question: "What is the body's largest organ?", answer: "A" },
+      { question_id: 5, question: "Which exercise helps strengthen the core muscles?", answer: "C" },
     ],
   },
 ];

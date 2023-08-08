@@ -7,14 +7,12 @@ export const DefaultNavbar = () => {
   return (
     <>
       <DefaultWrapper>
-        <div className="lock-con navbar">
           <nav>
-            <ul>
+            <ul className="flex items-center justify-center py-4 space-x-6 font-semibold">
               <li>Home</li>
               <li>Report A Bug</li>
             </ul>
           </nav>
-        </div>
       </DefaultWrapper>
       ;
     </>

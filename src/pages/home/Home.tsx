@@ -1,9 +1,9 @@
 import DefaultWrapper from "../../components/DefaultWrapper";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { DefaultNavbar } from "../../components/Navbar";
+import { MainNavbar } from "../../components/Navbar";
 import "./styles/Home.css";
 
 const Home = () => {
@@ -59,7 +59,7 @@ const Home = () => {
 
   return (
     <>
-      <header className="flex items-center justify-center h-screen text-white home-header">
+      {/* <header className="flex items-center justify-center h-screen text-white home-header">
         <div className="space-y-4 text-center">
           <h1 className="text-6xl font-extrabold uppercase">Welcome to BQuiz</h1>
           <div>
@@ -70,10 +70,14 @@ const Home = () => {
             </a>
           </div>
         </div>
+      </header> */}
+
+      <header>
+        <MainNavbar />
       </header>
 
       <main id="main">
-        <DefaultNavbar />
+        {/* <DefaultNavbar /> */}
         <DefaultWrapper>
           <section className="available">
             <h2 className="text-3xl font-extrabold">Quizzes available</h2>
