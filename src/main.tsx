@@ -1,9 +1,9 @@
-import React from "react";
+// import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/home/Home.tsx";
 import "./index.css";
-import ErrorPage from "./ErrorPage.tsx";
+// import ErrorPage from "./ErrorPage.jsx";
 import QuizPage from "./pages/quiz/QuizPage.tsx";
 import GlobalQuizProvider from "./contexts/GlobalQuizProvider.tsx";
 import QuizErrPage from "./pages/quiz/components/QuizError.tsx";
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
         <Home />
       </div>
     ),
-    errorElement: <ErrorPage />,
+    // errorElement: <ErrorPage />,
   },
   {
     path: "quiz/:quizId",

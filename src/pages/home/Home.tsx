@@ -82,7 +82,7 @@ const Home = () => {
           <section className="available">
             <h2 className="text-3xl font-extrabold">Quizzes available</h2>
 
-            <div className="grid grid-cols-3 gap-8 py-4">
+            <div className="grid gap-8 py-4 md:grid-cols-3">
               {availableQuiz.map((quiz, idx) => (
                 <div
                   className="px-8 py-4 duration-500 rounded-lg key={idx} shadow-md self-start bg-slate-700"

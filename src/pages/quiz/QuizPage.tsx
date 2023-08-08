@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { QuizContext } from "../../contexts/GlobalQuizProvider";
 import DefaultWrapper from "../../components/DefaultWrapper";
 import { MainNavbar } from "../../components/Navbar";
