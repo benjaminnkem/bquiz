@@ -71,13 +71,23 @@ const quizzes: QuizzesListType = [
       {
         question_id: 4,
         question: "What is the smallest bone in the human body?",
-        options: [{ optionText: "", position: "C" }],
+        options: [
+          { optionText: "Femur", position: "C" },
+          { optionText: "Something", position: "C" },
+          { optionText: "Something", position: "C" },
+          { optionText: "Something", position: "B" },
+        ],
         answer: "B",
       },
       {
         question_id: 5,
         question: "Which planet is known as the Red Planet?",
-        options: [{ optionText: "", position: "C" }],
+        options: [
+          { optionText: "Venus", position: "C" },
+          { optionText: "Earth", position: "C" },
+          { optionText: "Mars", position: "C" },
+          { optionText: "Uranus", position: "C" },
+        ],
         answer: "C",
       },
     ],
