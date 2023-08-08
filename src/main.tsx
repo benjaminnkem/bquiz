@@ -6,6 +6,7 @@ import "./index.css";
 import ErrorPage from "./ErrorPage.tsx";
 import QuizPage from "./pages/quiz/QuizPage.tsx";
 import GlobalQuizProvider from "./contexts/GlobalQuizProvider.tsx";
+import QuizErrPage from "./pages/quiz/components/QuizError.tsx";
 
 const router = createBrowserRouter([
   {
@@ -24,11 +25,12 @@ const router = createBrowserRouter([
         <QuizPage />
       </GlobalQuizProvider>
     ),
+    errorElement: <QuizErrPage />,
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  // </React.StrictMode>
 );

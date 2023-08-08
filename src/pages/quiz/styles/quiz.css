@@ -1,5 +1,5 @@
 .science-whiz {
-  background: url("/images/backgrounds/science1.jpg") no-repeat top;
+  background: url("/images/backgrounds/science3.jpg") no-repeat top;
   background-size: cover;
   background-attachment: fixed;
 }
@@ -44,4 +44,17 @@
   background: url("/images/backgrounds/health1.jpg") no-repeat top;
   background-size: cover;
   background-attachment: fixed;
+}
+
+@media (max-width: 768px) {
+  .science-whiz,
+  .movie-buzz,
+  .sports-fanatic,
+  .nature-and-wildlife-quiz,
+  .music-mania,
+  .tech-trivia-trek,
+  .mythology-mayhem,
+  .health-and-wellness-wiz {
+    background-attachment: scroll;
+  }
 }
