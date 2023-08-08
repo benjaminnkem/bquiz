@@ -4,7 +4,7 @@ import Home from "./pages/home/Home";
 function App() {
   return (
     <>
-      <Home />
+      <div className="wrapper bg-slate-900"></div>
     </>
   );
 }

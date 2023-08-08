@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 const DefaultWrapper = ({ children }: { children: ReactNode }) => {
   return (
     <>
-      <div className="wrap">{children}</div>
+      <div className="mx-auto md:max-w-[1488px] w-11/12">{children}</div>
     </>
   );
 };

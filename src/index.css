@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 :root {
-  --base-background-color: #000000;
+  --base-background-color: #0f172a;
   --base-foreground-color: #fff;
 
   --accent-1: #150050;
