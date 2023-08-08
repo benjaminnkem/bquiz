@@ -1,9 +1,10 @@
 import DefaultWrapper from "../../components/DefaultWrapper";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { DefaultNavbar } from "../../components/Navbar";
+import "./styles/Home.css";
 
 const Home = () => {
   const [availableQuiz] = useState<{ quizName: string; description: string; urlPath: string }[]>([
@@ -58,19 +59,20 @@ const Home = () => {
 
   return (
     <>
-      <header className="relative flex items-center justify-center h-screen text-white home-header -z-10">
-        <div className="text-center">
-          <h1>Welcome to BQuiz</h1>
-          <p className="text-lg">Show B' what you got!</p>
+      <header className="flex items-center justify-center h-screen text-white home-header">
+        <div className="space-y-4 text-center">
+          <h1 className="text-6xl font-extrabold uppercase">Welcome to BQuiz</h1>
+          <div>
+            <a href="#main">
+              <button className="px-6 py-1 text-lg duration-200 bg-black border-2 border-purple-400 rounded-lg hover:bg-purple-700 bg-opacity-60">
+                Start <FontAwesomeIcon icon={faAngleDown}/>
+              </button>
+            </a>
+          </div>
         </div>
-        <img
-          src="/images/backgrounds/bg5.jpg"
-          alt="Header Background"
-          className="absolute top-0 left-0 object-cover w-full h-full select-none -z-10 header-img"
-        />
       </header>
 
-      <main>
+      <main id="main">
         <DefaultNavbar />
         <DefaultWrapper>
           <section className="available">

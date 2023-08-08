@@ -66,10 +66,10 @@ body {
   transition: background-color 0.5s, color 0.8s;
   background: var(--base-background-color);
   color: var(--base-foreground-color);
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
-.lock-con {
+/* .lock-con {
   max-width: 1024px;
   margin-inline: auto;
 }
@@ -80,7 +80,7 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   perspective: 10px;
-}
+} */
 
 .navbar {
   display: flex;

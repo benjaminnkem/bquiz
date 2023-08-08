@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DefaultWrapper from "./DefaultWrapper";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+import { faCoffee, faHome } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 export const DefaultNavbar = () => {
@@ -31,7 +31,11 @@ export const MainNavbar = () => {
           </Link>
 
           <ul className="flex items-center justify-between space-x-4 font-semibold">
-            <li>Home</li>
+            <li>
+              <Link to={"/"}>
+                Home <FontAwesomeIcon icon={faHome} />
+              </Link>{" "}
+            </li>
             <li>
               Buy Me A Coffee <FontAwesomeIcon icon={faCoffee} />{" "}
             </li>

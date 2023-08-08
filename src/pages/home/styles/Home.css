@@ -3,10 +3,9 @@
 }
 
 .home-header {
-  background: url("/images/backgrounds/mainbg.jpg") center no-repeat;
+  background: url("/images/backgrounds/bg4.jpg") center no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  border: 10px red solid;
 }
 
 .available {
