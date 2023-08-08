@@ -25,7 +25,7 @@ export const MainNavbar = () => {
       <DefaultWrapper>
         <nav className="flex items-center justify-between py-4">
           <Link to={"/"}>
-            <span className="text-2xl font-extrabold text-purple-200 border-b border-purple-600">BQuiz</span>
+            <span className="text-2xl font-extrabold text-purple-100 border-b border-purple-600">BQuiz</span>
           </Link>
 
           <ul className="flex items-center justify-between space-x-4 font-semibold">

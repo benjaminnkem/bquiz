@@ -66,7 +66,7 @@ body {
   transition: background-color 0.5s, color 0.8s;
   background: var(--base-background-color);
   color: var(--base-foreground-color);
-  /* overflow: hidden; */
+  overflow-x: hidden;
 }
 
 .navbar {
@@ -84,5 +84,5 @@ body {
 
 /* Others */
 .text-shadow {
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.377);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.52);
 }
