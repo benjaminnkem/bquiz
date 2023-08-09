@@ -5,6 +5,7 @@ import { faArrowRight, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { MainNavbar } from "../../components/Navbar";
 import "./styles/Home.css";
+import { useEffect } from "react";
 
 const Home = () => {
   const [availableQuiz] = useState<{ quizName: string; description: string; urlPath: string }[]>([
@@ -56,6 +57,10 @@ const Home = () => {
       urlPath: "health-and-wellness-wiz",
     },
   ]);
+
+  useEffect(() => {
+    document.title = "BQuiz - Home";
+  }, []);
 
   return (
     <>

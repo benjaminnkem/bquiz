@@ -83,10 +83,10 @@ const quizzes: QuizzesListType = [
         question_id: 5,
         question: "Which planet is known as the Red Planet?",
         options: [
-          { optionText: "Venus", position: "C" },
-          { optionText: "Earth", position: "C" },
+          { optionText: "Venus", position: "A" },
+          { optionText: "Earth", position: "B" },
           { optionText: "Mars", position: "C" },
-          { optionText: "Uranus", position: "C" },
+          { optionText: "Uranus", position: "D" },
         ],
         answer: "C",
       },
