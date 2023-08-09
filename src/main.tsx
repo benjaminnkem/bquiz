@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         <QuizPage />
       </GlobalQuizProvider>
     ),
-    // errorElement: <QuizErrPage />,
+    errorElement: <QuizErrPage />,
   },
 ]);
 
