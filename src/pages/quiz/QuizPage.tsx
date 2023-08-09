@@ -4,8 +4,9 @@ import { QuizContext } from "../../contexts/GlobalQuizProvider";
 import DefaultWrapper from "../../components/DefaultWrapper";
 import { MainNavbar } from "../../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown, faArrowRight, faReceipt, faStopwatch } from "@fortawesome/free-solid-svg-icons";
+import { faArrowDown, faArrowRight, faClose, faReceipt, faStopwatch } from "@fortawesome/free-solid-svg-icons";
 import "./styles/quiz.css";
+import { Link } from "react-router-dom";
 
 const QuizPage = () => {
   const { quizId } = useParams();
@@ -173,16 +174,44 @@ const QuizPage = () => {
                         >
                           <h4 className="text-lg font-bold">Question {idx + 1}</h4>
                           <p>{quest.question}</p>
-                          {/* <p className="font-mono">Ans: { quest.options.filter(ans => ans.position === quest.answer)[0] }</p> */}
+
+                          <p className="font-mono">
+                            You:{" "}
+                            {
+                              quest.options.filter(
+                                (ans) => ans.position === statusManager.pickedMessages[idx].selectedLetter
+                              )[0]?.optionText
+                            }{" "}
+                            <span
+                              className={`${
+                                statusManager.pickedMessages[idx].selectedLetter === quest.answer
+                                  ? "text-green-500"
+                                  : "text-red-500"
+                              }`}
+                            >
+                              ({statusManager.pickedMessages[idx].selectedLetter})
+                            </span>
+                          </p>
+
+                          {/* <p>You: {statusManager.pickedMessages[idx].selectedLetter}</p> */}
+
                           {quest.options
                             .filter((ans) => ans.position === quest.answer)
                             .map((q) => (
                               <p className="font-mono">
-                                Ans: {q.optionText} ({quest.answer})
+                                Answer: {q.optionText} <span className="text-green-500">({quest.answer})</span>
                               </p>
                             ))}
                         </div>
                       ))}
+
+                      <div>
+                        <Link to={"/"}>
+                          <button className="w-full py-2 duration-200 border-2 rounded-lg border-slate-700 hover:bg-slate-600">
+                            <span>Close</span> <FontAwesomeIcon icon={faClose} className="translate-y-[.125rem]" />
+                          </button>
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </section>
