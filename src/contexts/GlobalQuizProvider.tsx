@@ -72,9 +72,9 @@ const quizzes: QuizzesListType = [
         question_id: 4,
         question: "What is the smallest bone in the human body?",
         options: [
-          { optionText: "Femur", position: "C" },
+          { optionText: "Femur", position: "A" },
           { optionText: "Something", position: "C" },
-          { optionText: "Something", position: "C" },
+          { optionText: "Something", position: "D" },
           { optionText: "Something", position: "B" },
         ],
         answer: "B",

@@ -84,13 +84,13 @@ const Home = () => {
       <main id="main">
         {/* <DefaultNavbar /> */}
         <DefaultWrapper>
-          <section className="available">
+          <section className="py-4">
             <h2 className="text-3xl font-extrabold">Quizzes available</h2>
 
-            <div className="grid gap-8 py-4 md:grid-cols-3">
+            <div className="grid gap-8 py-4 sm:grid-cols-2 grid-cols-1 md:grid-cols-3">
               {availableQuiz.map((quiz, idx) => (
                 <div
-                  className="px-8 py-4 duration-500 rounded-lg key={idx} shadow-md self-start bg-slate-700"
+                  className="p-4 duration-500 rounded-lg key={idx} shadow-md self-start bg-slate-800"
                   key={idx}
                 >
                   <div className="flex items-center justify-between">

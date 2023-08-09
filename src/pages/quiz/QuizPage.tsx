@@ -4,9 +4,18 @@ import { QuizContext } from "../../contexts/GlobalQuizProvider";
 import DefaultWrapper from "../../components/DefaultWrapper";
 import { MainNavbar } from "../../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown, faArrowRight, faClose, faReceipt, faStopwatch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowDown,
+  faArrowRight,
+  faArrowUp,
+  faCircleArrowRight,
+  faClose,
+  faReceipt,
+  faStopwatch,
+} from "@fortawesome/free-solid-svg-icons";
 import "./styles/quiz.css";
 import { Link } from "react-router-dom";
+import { StatusManager } from "../../types/quiz.types";
 
 const QuizPage = () => {
   const { quizId } = useParams();
@@ -17,17 +26,13 @@ const QuizPage = () => {
   const [letterOptions] = useState<string[]>(["A", "B", "C", "D"]);
   const [selectedAnswer, setSelectedAnswer] = useState("");
 
-  type StatusManager = {
-    nextText: string;
-    isLastQuestion: boolean;
-    finished: boolean;
-    pickedMessages: { curIndex: number; selectedLetter: string }[];
-  };
-
   const [statusManager, setStatusManager] = useState<StatusManager>({
     nextText: "Next",
     isLastQuestion: false,
     finished: false,
+    started: false,
+    hideHero: false,
+    correctAnswers: 0,
     pickedMessages: [],
   });
 
@@ -48,7 +53,6 @@ const QuizPage = () => {
   }, [quiz.title]);
 
   const nextFunc = () => {
-    // Collect SelectedIndex
     setStatusManager({
       ...statusManager,
       pickedMessages: [
@@ -75,6 +79,35 @@ const QuizPage = () => {
     setSelectedAnswer("");
   };
 
+  const allCorrectAnswer = () => {
+    setStatusManager({
+      ...statusManager,
+      correctAnswers: statusManager.correctAnswers + 1,
+    });
+  };
+
+  const shrinkHero = () => {
+    if (!statusManager.hideHero) setStatusManager({ ...statusManager, started: true });
+  };
+
+  const hideHero = () => {
+    if (statusManager.started) setStatusManager({ ...statusManager, hideHero: !statusManager.hideHero });
+  };
+
+  const restartQuiz = () => {
+    setStatusManager({
+      nextText: "Next",
+      isLastQuestion: false,
+      finished: false,
+      hideHero: false,
+      started: true,
+      correctAnswers: 0,
+      pickedMessages: [],
+    });
+    setQuestionIndex(0);
+    setSelectedAnswer("");
+  };
+
   return (
     <>
       {quiz ? (
@@ -84,27 +117,45 @@ const QuizPage = () => {
             <div className="w-[20%] w-[40%] w-[60%] w-[80%] w-[100%]"></div>
           </header>
           <main>
-            <section className={`h-screen -mt-16 ${quizId!} flex items-center justify-center`}>
-              <div className="mt-4 text-center">
-                <h1 className="text-6xl font-extrabold text-shadow">
-                  {quiz.title} <FontAwesomeIcon icon={faStopwatch} />
-                </h1>
-                <p className="max-w-2xl mx-auto my-2 text-shadow">{quiz.description}</p>
+            <section
+              className={`${statusManager.started && !statusManager.hideHero ? "h-[20rem]" : "h-screen"} ${
+                statusManager.hideHero && statusManager.started ? "md:h-[6rem] h-[10rem]" : ""
+              } -mt-16 ${quizId!} flex items-center justify-center duration-500`}
+            >
+              <div className="mt-4 text-center p-3 md:p-0">
+                <div className={`${statusManager.hideHero && statusManager.started ? "hidden" : "block"}`}>
+                  <h1 className="lg:text-6xl md:text-5xl text-4xl font-extrabold text-shadow">
+                    {quiz.title} <FontAwesomeIcon icon={faStopwatch} />
+                  </h1>
+                  <p className="max-w-2xl mx-auto my-2 text-shadow">{quiz.description}</p>
+                </div>
 
-                <a href="#main">
-                  <button className="px-6 py-2 mt-2 duration-200 bg-purple-600 bg-opacity-50 border-2 border-purple-600 rounded-lg shadow-md border-opacity-70 hover:border-purple-400 group">
-                    Start{" "}
+                <button
+                  className="px-6 py-1 mt-2 duration-200 bg-purple-600 bg-opacity-50 border-2 border-purple-600 rounded-lg shadow-md border-opacity-70 hover:border-purple-400 group"
+                  onClick={() => {
+                    shrinkHero();
+                    hideHero();
+                  }}
+                >
+                  {/* {!statusManager.started && !statusManager.hideHero ? "Start" : ""}{" "} */}
+                  {statusManager.hideHero ? "Open" : "Close"}{" "}
+                  {!statusManager.hideHero ? (
+                    <FontAwesomeIcon
+                      icon={faArrowUp}
+                      className="duration-200  group-hover:-translate-y-[.25rem] group-hover:text-slate-300"
+                    />
+                  ) : (
                     <FontAwesomeIcon
                       icon={faArrowDown}
-                      className="duration-200 -translate-y-[.125rem] group-hover:translate-y-[.25rem] group-hover:text-slate-300"
+                      className="duration-200  group-hover:translate-y-[.25rem] group-hover:text-slate-300"
                     />
-                  </button>
-                </a>
+                  )}
+                </button>
               </div>
             </section>
 
             {/* Main */}
-            <div className="mx-auto md:max-w-[1488px] w-11/12 my-10 h-screen grid place-content-center" id="main">
+            <div className="mx-auto md:max-w-[1488px] w-11/12 my-10 grid place-content-center" id="main">
               {!statusManager.finished ? (
                 <section className="max-w-2xl lg:min-w-[32rem] md:min-w-[24rem] min-w-[20rem] p-2 mx-auto duration-200 rounded-md">
                   <div className="w-full h-4 mb-2 overflow-hidden rounded-md bg-slate-600 bg-opacity-20">
@@ -170,47 +221,57 @@ const QuizPage = () => {
                       {quiz.quiz_body.map((quest, idx) => (
                         <div
                           key={idx}
-                          className="p-3 duration-200 border-b-2 rounded-lg border-slate-700 bg-slate-800 hover:bg-slate-700"
+                          className={`p-3 duration-200 border-b-2 rounded-lg bg-slate-800 hover:bg-slate-700 ${
+                            statusManager.pickedMessages[idx].selectedLetter === quest.answer
+                              ? "border-green-700"
+                              : "border-red-500"
+                          }`}
                         >
                           <h4 className="text-lg font-bold">Question {idx + 1}</h4>
                           <p>{quest.question}</p>
 
-                          <p className="font-mono">
-                            You:{" "}
-                            {
-                              quest.options.filter(
-                                (ans) => ans.position === statusManager.pickedMessages[idx].selectedLetter
-                              )[0]?.optionText
-                            }{" "}
-                            <span
-                              className={`${
-                                statusManager.pickedMessages[idx].selectedLetter === quest.answer
-                                  ? "text-green-500"
-                                  : "text-red-500"
-                              }`}
-                            >
-                              ({statusManager.pickedMessages[idx].selectedLetter})
-                            </span>
-                          </p>
+                          <div className="text-sm font-semibold">
+                            <p className="font-mono">
+                              You:{" "}
+                              {
+                                quest.options.filter(
+                                  (ans) => ans.position === statusManager.pickedMessages[idx].selectedLetter
+                                )[0]?.optionText
+                              }{" "}
+                              <span
+                                className={`${
+                                  statusManager.pickedMessages[idx].selectedLetter === quest.answer
+                                    ? "text-green-500"
+                                    : "text-red-500"
+                                }`}
+                              >
+                                ({statusManager.pickedMessages[idx].selectedLetter})
+                              </span>
+                            </p>
 
-                          {/* <p>You: {statusManager.pickedMessages[idx].selectedLetter}</p> */}
-
-                          {quest.options
-                            .filter((ans) => ans.position === quest.answer)
-                            .map((q) => (
-                              <p className="font-mono">
-                                Answer: {q.optionText} <span className="text-green-500">({quest.answer})</span>
-                              </p>
-                            ))}
+                            {quest.options
+                              .filter((ans) => ans.position === quest.answer)
+                              .map((q) => (
+                                <p className="font-mono">
+                                  Answer: {q.optionText} <span className="text-green-500">({quest.answer})</span>
+                                </p>
+                              ))}
+                          </div>
                         </div>
                       ))}
 
-                      <div>
+                      <div className="grid grid-cols-2 gap-1">
                         <Link to={"/"}>
                           <button className="w-full py-2 duration-200 border-2 rounded-lg border-slate-700 hover:bg-slate-600">
-                            <span>Close</span> <FontAwesomeIcon icon={faClose} className="translate-y-[.125rem]" />
+                            <span>Close</span> <FontAwesomeIcon icon={faClose} />
                           </button>
                         </Link>
+                        <button
+                          className="w-full py-2 duration-200 border-2 rounded-lg border-slate-700 hover:bg-slate-600"
+                          onClick={restartQuiz}
+                        >
+                          <span>Restart</span> <FontAwesomeIcon icon={faCircleArrowRight} />
+                        </button>
                       </div>
                     </div>
                   </div>
