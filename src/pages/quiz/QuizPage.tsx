@@ -79,13 +79,6 @@ const QuizPage = () => {
     setSelectedAnswer("");
   };
 
-  const allCorrectAnswer = () => {
-    setStatusManager({
-      ...statusManager,
-      correctAnswers: statusManager.correctAnswers + 1,
-    });
-  };
-
   const shrinkHero = () => {
     if (!statusManager.hideHero) setStatusManager({ ...statusManager, started: true });
   };
@@ -122,9 +115,9 @@ const QuizPage = () => {
                 statusManager.hideHero && statusManager.started ? "md:h-[6rem] h-[10rem]" : ""
               } -mt-16 ${quizId!} flex items-center justify-center duration-500`}
             >
-              <div className="mt-4 text-center p-3 md:p-0">
+              <div className="p-3 mt-4 text-center md:p-0">
                 <div className={`${statusManager.hideHero && statusManager.started ? "hidden" : "block"}`}>
-                  <h1 className="lg:text-6xl md:text-5xl text-4xl font-extrabold text-shadow">
+                  <h1 className="text-4xl font-extrabold lg:text-6xl md:text-5xl text-shadow">
                     {quiz.title} <FontAwesomeIcon icon={faStopwatch} />
                   </h1>
                   <p className="max-w-2xl mx-auto my-2 text-shadow">{quiz.description}</p>
