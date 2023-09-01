@@ -5,9 +5,7 @@ import DefaultWrapper from "../../components/DefaultWrapper";
 import { MainNavbar } from "../../components/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowDown,
   faArrowRight,
-  faArrowUp,
   faCircleArrowRight,
   faClose,
   faReceipt,
@@ -31,7 +29,6 @@ const QuizPage = () => {
     isLastQuestion: false,
     finished: false,
     started: false,
-    hideHero: false,
     correctAnswers: 0,
     pickedMessages: [],
   });
@@ -51,6 +48,8 @@ const QuizPage = () => {
   useEffect(() => {
     document.title = `${quiz.title} - BQuiz`;
   }, [quiz.title]);
+
+  const startQuiz = () => setStatusManager({ ...statusManager, started: true });
 
   const nextFunc = () => {
     setStatusManager({
@@ -79,20 +78,11 @@ const QuizPage = () => {
     setSelectedAnswer("");
   };
 
-  const shrinkHero = () => {
-    if (!statusManager.hideHero) setStatusManager({ ...statusManager, started: true });
-  };
-
-  const hideHero = () => {
-    if (statusManager.started) setStatusManager({ ...statusManager, hideHero: !statusManager.hideHero });
-  };
-
   const restartQuiz = () => {
     setStatusManager({
       nextText: "Next",
       isLastQuestion: false,
       finished: false,
-      hideHero: false,
       started: true,
       correctAnswers: 0,
       pickedMessages: [],
@@ -111,12 +101,10 @@ const QuizPage = () => {
           </header>
           <main>
             <section
-              className={`${statusManager.started && !statusManager.hideHero ? "h-[20rem]" : "h-screen"} ${
-                statusManager.hideHero && statusManager.started ? "md:h-[6rem] h-[10rem]" : ""
-              } -mt-16 ${quizId!} flex items-center justify-center duration-500`}
+              className={`${statusManager.started ? "h-0" : "h-screen"} overflow-hidden -mt-16 ${quizId!} flex items-center justify-center duration-500`}
             >
               <div className="p-3 mt-4 text-center md:p-0">
-                <div className={`${statusManager.hideHero && statusManager.started ? "hidden" : "block"}`}>
+                <div>
                   <h1 className="text-4xl font-extrabold lg:text-6xl md:text-5xl text-shadow">
                     {quiz.title} <FontAwesomeIcon icon={faStopwatch} />
                   </h1>
@@ -125,41 +113,26 @@ const QuizPage = () => {
 
                 <button
                   className="px-6 py-1 mt-2 duration-200 bg-purple-600 bg-opacity-50 border-2 border-purple-600 rounded-lg shadow-md border-opacity-70 hover:border-purple-400 group"
-                  onClick={() => {
-                    shrinkHero();
-                    hideHero();
-                  }}
+                  onClick={startQuiz}
                 >
-                  {/* {!statusManager.started && !statusManager.hideHero ? "Start" : ""}{" "} */}
-                  {statusManager.hideHero ? "Open" : "Close"}{" "}
-                  {!statusManager.hideHero ? (
-                    <FontAwesomeIcon
-                      icon={faArrowUp}
-                      className="duration-200  group-hover:-translate-y-[.25rem] group-hover:text-slate-300"
-                    />
-                  ) : (
-                    <FontAwesomeIcon
-                      icon={faArrowDown}
-                      className="duration-200  group-hover:translate-y-[.25rem] group-hover:text-slate-300"
-                    />
-                  )}
+                  Start Quiz
                 </button>
               </div>
             </section>
 
             {/* Main */}
-            <div className="mx-auto md:max-w-[1488px] w-11/12 my-10 grid place-content-center" id="main">
+            <div className="mx-auto md:max-w-[1488px] w-11/12 my-40 grid place-content-center" id="main">
               {!statusManager.finished ? (
                 <section className="max-w-2xl lg:min-w-[32rem] md:min-w-[24rem] min-w-[20rem] p-2 mx-auto duration-200 rounded-md">
                   <div className="w-full h-4 mb-2 overflow-hidden rounded-md bg-slate-600 bg-opacity-20">
                     <div
                       className={`w-[${
-                        ((currentQuestionIndex + 1) / quiz.quiz_body.length) * 100
+                        ((currentQuestionIndex) / quiz.quiz_body.length) * 100
                       }%] h-full duration-200 bg-purple-500`}
                     ></div>
                   </div>
                   <p className="text-sm font-bold text-right text-slate-400">
-                    {`${currentQuestionIndex + 1} / ${quiz.quiz_body.length}`}
+                    {`${currentQuestionIndex} / ${quiz.quiz_body.length}`}
                   </p>
 
                   <div className="space-y-3">
